@@ -96,4 +96,15 @@ describe('grpcc', () => {
     let fn = grpcc.bind(null, args, {});
     expect(fn).to.throw(/unexpected identifier/i);
   });
+
+  it('not throw load pb file', () => {
+    let args = {
+      proto: './test/test.pb',
+      address: ':8080',
+      service: 'TestService',
+      eval: '1',
+    };
+    let fn = grpcc.bind(null, args, {});
+    expect(fn).to.not.throw();
+  });
 });
