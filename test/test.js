@@ -107,4 +107,15 @@ describe('grpcc', () => {
     let fn = grpcc.bind(null, args, {});
     expect(fn).to.not.throw();
   });
+
+  it('not throw if load multi proto files', () => {
+    let args = {
+      proto: ['./test/test.proto', './test/nopackage.proto', './test/test.pb'],
+      address: ':8080',
+      manual: true,
+      eval: 'Client("grpcctest.TestService"); Client("unknown.TestNoService")',
+    };
+    let fn = grpcc.bind(null, args, {});
+    expect(fn).to.not.throw();
+  });
 });

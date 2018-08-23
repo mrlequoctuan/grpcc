@@ -20,6 +20,7 @@ program
   .option('-i, --insecure', 'use an insecure connection (default=false)', false)
   .option('-e, --eval <string>', 'evaluate script and print result (optional)')
   .option('-x, --exec <path>', 'execute a script file and print the results (optional)')
+  .option('-m, --manual', 'do not create default client')
   .option('--root_cert <path>', 'specify root certificate path for secure connections (optional)')
   .option('--private_key <path>', 'specify private key path for secure connections (optional)')
   .option('--cert_chain <path>', 'specify certificate chain path for secure connections (optional)')
