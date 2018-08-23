@@ -6,9 +6,14 @@ let program = require('commander');
 
 let grpcc = require('../lib');
 
+function collect(val, memo) {
+  memo.push(val);
+  return memo;
+}
+
 program
   .version(require('../package.json').version)
-  .option('-p, --proto <path>', 'path to a protobuf file describing the service (required)')
+  .option('-p, --proto <path>', 'path to a protobuf or descritor set file describing the service (required)', collect, [])
   .option('-d, --directory <path>', 'path to a protobuf file directory')
   .option('-a, --address <host:port>', 'the address of the service to connect to (required)')
   .option('-s, --service <name>', 'the name of the service to connect to (optional)')
@@ -21,7 +26,7 @@ program
   .parse(process.argv);
 
 
-if (!program.proto || program.proto.length < 3) {
+if (!program.proto || program.proto.length < 1) {
   console.log('\nError: `proto` should be a valid path to a .proto file');
   program.help();
 }
